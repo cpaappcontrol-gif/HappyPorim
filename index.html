@@ -14,6 +14,14 @@ overflow-x:hidden;
 background:black;
 }
 
+/* ⭐ רקע כוכבים */
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
+}
+
 #login{
 height:100vh;
 display:flex;
@@ -24,11 +32,6 @@ background:linear-gradient(135deg,#ff0080,#7928ca,#2afadf);
 text-align:center;
 }
 
-  .video{
-margin-top:30px;
-margin-bottom:30px;
-}
-  
 input{
 padding:12px;
 border-radius:10px;
@@ -79,6 +82,7 @@ background:linear-gradient(135deg,#000428,#004e92);
 h1{
 font-size:48px;
 animation: glow 2s infinite alternate;
+cursor:pointer;
 }
 
 @keyframes glow{
@@ -92,7 +96,7 @@ max-width:700px;
 }
 
 .video{
-margin-top:30px;
+margin:30px 0;
 width:80%;
 max-width:560px;
 aspect-ratio:16/9;
@@ -104,10 +108,17 @@ padding:40px;
 text-align:center;
 font-size:18px;
 }
+
+#laughMeter{
+font-size:50px;
+margin:20px;
+}
 </style>
 </head>
 
 <body>
+
+<canvas id="stars"></canvas>
 
 <div id="login">
 <h2>🎭 פורטל פורים הרשמי 🎭</h2>
@@ -120,7 +131,7 @@ font-size:18px;
 <div id="world">
 
 <div class="section">
-<h1 id="title"></h1>
+<h1 id="title" onclick="secretClick()"></h1>
 <p class="big" id="intro"></p>
 </div>
 
@@ -151,8 +162,8 @@ allowfullscreen></iframe>
 
 <div class="section">
 <h1>😂 מד צחוק</h1>
-<p class="big">המערכת מזהה רעידות צחוק באזור הסלון.  
-המלצה: להחזיק אוזני המן בהיכון.</p>
+<h2 id="laughMeter">0%</h2>
+<button onclick="increaseLaugh()">הצחקתי!</button>
 </div>
 
 <div class="footer">
@@ -160,6 +171,8 @@ allowfullscreen></iframe>
 </div>
 
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <script>
 
@@ -218,15 +231,66 @@ document.getElementById("title").innerHTML=data[code].title;
 document.getElementById("intro").innerHTML=data[code].intro;
 document.getElementById("declaration").innerHTML=data[code].declaration;
 document.getElementById("mission").innerHTML=data[code].mission;
-window.scrollTo(0,0);
+
+confetti({particleCount:150,spread:100,origin:{y:0.6}});
+
 }else{
 document.getElementById("error").innerHTML="🚨 קוד שגוי… אולי מישהו אכל יותר מדי אוזני המן?";
 }
 }
 
+/* 😂 מד צחוק */
+let laugh=0;
+function increaseLaugh(){
+laugh+=Math.floor(Math.random()*20)+5;
+if(laugh>=100){
+laugh=100;
+confetti({particleCount:200,spread:120});
+alert("🤣 100% צחוק! הבית הוכרז כאזור עדלאידע!");
+}
+document.getElementById("laughMeter").innerText=laugh+"%";
+}
+
+/* 👑 Easter Egg */
+let clicks=0;
+function secretClick(){
+clicks++;
+if(clicks>=5){
+confetti({particleCount:300,spread:150});
+alert("🎉 מצב סודי הופעל! אתם רשמית אלופי הפורטל 🎉");
+clicks=0;
+}
+}
+
+/* ⭐ כוכבים */
+const canvas=document.getElementById("stars");
+const ctx=canvas.getContext("2d");
+
+function resizeCanvas(){
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener("resize",resizeCanvas);
+
+let stars=[];
+for(let i=0;i<120;i++){
+stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2});
+}
+
+function drawStars(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle="white";
+stars.forEach(s=>{
+ctx.beginPath();
+ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+ctx.fill();
+});
+requestAnimationFrame(drawStars);
+}
+drawStars();
+
 </script>
 
 </body>
-
 </html>
-
