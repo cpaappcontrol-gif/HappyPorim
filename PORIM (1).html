@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>יקום פורים – עידו ואביה פרחי</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+color:white;
+overflow-x:hidden;
+background:black;
+}
+
+#login{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+background:linear-gradient(135deg,#ff0080,#7928ca,#2afadf);
+text-align:center;
+}
+
+input{
+padding:12px;
+border-radius:10px;
+border:none;
+font-size:16px;
+text-align:center;
+}
+
+button{
+margin-top:10px;
+padding:12px 25px;
+border-radius:10px;
+border:none;
+cursor:pointer;
+font-weight:bold;
+}
+
+#error{margin-top:10px;}
+
+#world{
+display:none;
+animation: fadeIn 2s ease;
+}
+
+@keyframes fadeIn{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+.section{
+min-height:100vh;
+padding:80px 20px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+.section:nth-child(odd){
+background:linear-gradient(135deg,#1a1a1a,#330033);
+}
+
+.section:nth-child(even){
+background:linear-gradient(135deg,#000428,#004e92);
+}
+
+h1{
+font-size:48px;
+animation: glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{text-shadow:0 0 10px #ff00ff;}
+to{text-shadow:0 0 30px #00ffff;}
+}
+
+.big{
+font-size:24px;
+max-width:700px;
+}
+
+.video{
+margin-top:30px;
+width:80%;
+max-width:560px;
+aspect-ratio:16/9;
+}
+
+.footer{
+background:black;
+padding:40px;
+text-align:center;
+font-size:18px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="login">
+<h2>🎭 פורטל פורים הרשמי 🎭</h2>
+<p>נוצר באהבה על ידי עידו ואביה פרחי</p>
+<input type="text" id="code" placeholder="הכנס קוד סודי">
+<button onclick="enterWorld()">פתח את היקום</button>
+<p id="error"></p>
+</div>
+
+<div id="world">
+
+<div class="section">
+<h1 id="title"></h1>
+<p class="big" id="intro"></p>
+</div>
+
+<div class="section">
+<h1>📜 הכרזה רשמית</h1>
+<p class="big" id="declaration"></p>
+</div>
+
+<div class="section">
+<h1>🎯 משימת פורים</h1>
+<p class="big" id="mission"></p>
+</div>
+
+<div class="section">
+<h1>🎬 סרטון לחימום מצב רוח</h1>
+<iframe class="video"
+src="https://www.youtube.com/embed/ZbZSe6N_BXs"
+frameborder="0"
+allowfullscreen></iframe>
+</div>
+
+<div class="section">
+<h1>😂 מד צחוק</h1>
+<p class="big">המערכת מזהה רעידות צחוק באזור הסלון.  
+המלצה: להחזיק אוזני המן בהיכון.</p>
+</div>
+
+<div class="footer">
+🎉 פורים שמח ממשפחת פרחי – עידו ואביה 🎉
+</div>
+
+</div>
+
+<script>
+
+const data={
+
+"MISHMAR-RAZ-5786":{
+title:"🎭 משפחת משמור – יקום פורים נפתח!",
+intro:"רזיאל ועליזה… הצלחתם להפעיל את שער השמחה.",
+declaration:"לאחר בדיקה יסודית נמצא כי אתם בעלי פוטנציאל מסיבה גבוה מהממוצע הארצי.",
+mission:"לרקוד 60 שניות בלי מוזיקה ולגרום לשכן לחשוב שיש תקלה בחשמל."
+},
+
+"SAID-POWER-5786":{
+title:"🔥 משפחת סעיד – אנרגיה זוהתה!",
+intro:"הודיעה ואוריאל… השרתים רועדים.",
+declaration:"המערכת זיהתה וייבים של חגיגה עוד לפני הקוד.",
+mission:"להחליף ביניכם קולות ל-3 דקות ולדבר רציני לגמרי."
+},
+
+"MOSHE-JOY-5786":{
+title:"✨ משפחת משה – כניסה מאושרת!",
+intro:"טוהר ויונתן… מצב רוח זוהה כחיובי במיוחד.",
+declaration:"נמצאתם ראויים לדרגת עדלאידע בכירה.",
+mission:"לספר בדיחה גרועה במיוחד ולהישאר רציניים."
+},
+
+"SHMUEL-SMILE-5786":{
+title:"🎶 משפחת שמואל – שמחה זוהתה!",
+intro:"נועם ושירה… המערכת התחילה לשיר לבד.",
+declaration:"אחוזי חיוך: 98%. חשד לקפיצות ספונטניות.",
+mission:"לשיר שיר פורים דרמטי כאילו אתם באירוויזיון."
+},
+
+"PARHI-ROYAL-5786":{
+title:"👑 משפחת פרחי – בעלי המערכת!",
+intro:"אין צורך בקוד. אתם ה-root.",
+declaration:"גישה מלאה לשרת השמחה.",
+mission:"להמשיך להיות תותחים ולחלק עוד משלוחים."
+},
+
+"AVRAHAM-BALAGAN-5786":{
+title:"🎊 משפחת אברהם – בלגן חיובי!",
+intro:"הפורטל נפתח עם קונפטי באוויר.",
+declaration:"זוהתה נטייה לכאוס מבוקר ושמח.",
+mission:"להמציא תחפושת בשתי מילים ולהציג אותה ברצינות תהומית."
+}
+
+};
+
+function enterWorld(){
+let code=document.getElementById("code").value.trim();
+if(data[code]){
+document.getElementById("login").style.display="none";
+document.getElementById("world").style.display="block";
+document.getElementById("title").innerHTML=data[code].title;
+document.getElementById("intro").innerHTML=data[code].intro;
+document.getElementById("declaration").innerHTML=data[code].declaration;
+document.getElementById("mission").innerHTML=data[code].mission;
+window.scrollTo(0,0);
+}else{
+document.getElementById("error").innerHTML="🚨 קוד שגוי… אולי מישהו אכל יותר מדי אוזני המן?";
+}
+}
+
+</script>
+
+</body>
+</html>
