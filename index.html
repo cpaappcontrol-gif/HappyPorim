@@ -321,7 +321,12 @@ if(data[code]){
 document.getElementById("login").style.display="none";
 document.getElementById("world").style.display="block";
 const video = document.getElementById("mainVideo");
-video.src = "https://www.youtube.com/embed/r6QT2S0aljo?autoplay=1&loop=1&playlist=r6QT2S0aljo";
+        // 1️⃣ מוסיפים enablejsapi=1
+        video.src = "https://www.youtube.com/embed/r6QT2S0aljo?autoplay=1&loop=1&playlist=r6QT2S0aljo&enablejsapi=1";
+
+        // 2️⃣ שולחים פקודה להתחיל לנגן
+        video.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+
 document.getElementById("title").innerHTML=data[code].title;
 document.getElementById("intro").innerHTML=data[code].intro;
 document.getElementById("declaration").innerHTML=data[code].declaration;
@@ -389,6 +394,7 @@ drawStars();
 
 </body>
 </html>
+
 
 
 
